@@ -54,7 +54,7 @@ var Header = function (_Component) {
         null,
         _react2.default.createElement(
           'div',
-          null,
+          { className: 'logo' },
           ' Logo '
         ),
         _react2.default.createElement(
@@ -75,7 +75,11 @@ var Header = function (_Component) {
             { href: '#' },
             ' log in'
           ),
-          _react2.default.createElement('a', { href: '#', className: 'register-btn' })
+          _react2.default.createElement(
+            'a',
+            { href: '#', className: 'register-btn' },
+            'Register'
+          )
         )
       );
     }
