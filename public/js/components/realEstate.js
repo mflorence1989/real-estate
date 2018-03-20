@@ -424,7 +424,7 @@ var Listings = function (_Component) {
             { className: 'listing' },
             _react2.default.createElement(
               'div',
-              { className: 'listing-image' },
+              { className: 'listing-img' },
               _react2.default.createElement(
                 'span',
                 { className: 'Address' },
@@ -433,63 +433,64 @@ var Listings = function (_Component) {
               _react2.default.createElement(
                 'div',
                 { className: 'details' },
+                _react2.default.createElement('div', { className: 'user-img' }),
                 _react2.default.createElement(
                   'div',
-                  { className: 'user-img' },
+                  { className: 'user-details' },
                   _react2.default.createElement(
-                    'div',
-                    { className: 'user-details' },
-                    _react2.default.createElement(
-                      'span',
-                      { className: 'user-name' },
-                      'Nina Smith'
-                    ),
-                    _react2.default.createElement(
-                      'span',
-                      { className: 'post-date' },
-                      '04/19/2017'
-                    )
+                    'span',
+                    { className: 'user-name' },
+                    'Nina Smith'
                   ),
                   _react2.default.createElement(
-                    'div',
-                    { className: 'listing-details' },
-                    _react2.default.createElement(
-                      'div',
-                      { className: 'floor-space' },
-                      _react2.default.createElement('i', { className: 'fa fa-square-o', 'aria-hidden': 'true' }),
-                      _react2.default.createElement(
-                        'span',
-                        null,
-                        '1000 ft\xB2'
-                      )
-                    ),
-                    _react2.default.createElement(
-                      'div',
-                      { className: 'bedrooms' },
-                      _react2.default.createElement('i', { className: 'fa fa-bed', 'aria-hidden': 'true' }),
-                      _react2.default.createElement(
-                        'span',
-                        null,
-                        '3 bedrooms'
-                      )
-                    )
+                    'span',
+                    { className: 'post-date' },
+                    '04/19/2017'
                   )
                 ),
                 _react2.default.createElement(
                   'div',
-                  { className: 'bottom-info' },
+                  { className: 'listing-details' },
                   _react2.default.createElement(
-                    'span',
-                    null,
-                    '$1000 / month'
+                    'div',
+                    { className: 'floor-space' },
+                    _react2.default.createElement('i', { className: 'fa fa-square-o', 'aria-hidden': 'true' })
                   ),
                   _react2.default.createElement(
                     'span',
                     null,
-                    _react2.default.createElement('i', { className: 'fa fa-map-marker', 'aria-hidden': 'true' }),
-                    'East New York '
+                    '1000 ft\xB2'
+                  )
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'bedrooms' },
+                  _react2.default.createElement('i', { className: 'fa fa-bed', 'aria-hidden': 'true' }),
+                  _react2.default.createElement(
+                    'span',
+                    null,
+                    '3 bedrooms'
                   )
                 )
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'bottom-info' },
+              _react2.default.createElement(
+                'span',
+                null,
+                '$1000 / month '
+              ),
+              _react2.default.createElement(
+                'span',
+                null,
+                _react2.default.createElement(
+                  'i',
+                  { className: 'fa fa-map-marker', 'aria-hidden': 'true' },
+                  ' '
+                ),
+                ' East New York '
               )
             )
           )
