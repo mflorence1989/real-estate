@@ -154,9 +154,11 @@ var App = function (_Component) {
       gym: false,
       finished_basement: false,
       swimmming_pool: false,
-      elevator: false
+      elevator: false,
+      filteredData: _listingsData2.default
     };
     _this.change = _this.change.bind(_this);
+    _this.filteredData = _this.filteredData.bind(_this);
     return _this;
   }
 
@@ -170,6 +172,19 @@ var App = function (_Component) {
 
       this.setState(_defineProperty({}, name, value), function () {
         console.log(_this2.state);
+        _this2.filteredData();
+      });
+    }
+  }, {
+    key: 'filteredData',
+    value: function filteredData() {
+      var _this3 = this;
+
+      var newData = this.state.listingsData.filter(function (item) {
+        return item.price >= _this3.state.min_price && item.price <= _this3.state.max_price && item.floorSpace >= _this3.state.min_floor_space && item.floorSpace <= _this3.state.max_floor_space;
+      });
+      this.setState({
+        filteredData: newData
       });
     }
   }, {
@@ -184,7 +199,7 @@ var App = function (_Component) {
           'section',
           { id: 'content-area' },
           _react2.default.createElement(_Filter2.default, { change: this.change, globalState: this.state }),
-          _react2.default.createElement(_Listings2.default, { listingsData: this.state.listingsData })
+          _react2.default.createElement(_Listings2.default, { listingsData: this.state.filteredData })
         )
       );
     }
@@ -537,6 +552,9 @@ var Listings = function (_Component) {
     value: function loopListings() {
       var listingsData = this.props.listingsData;
 
+      if (listingsData == undefined || listingsData.length == 0) {
+        return "Sorry your filter did not match any listings";
+      }
       return listingsData.map(function (listing, index) {
         return _react2.default.createElement(
           'div',
