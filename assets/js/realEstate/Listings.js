@@ -45,7 +45,7 @@ export default class Listings extends Component {
           </div>
 
           <div className="bottom-info">
-          <span className="price">{listing.price}</span>
+          <span className="price"> ${listing.price}</span>
           <span className="location"><i className="fa fa-map-marker" aria-hidden="true"> </i> {listing.state},{listing.city}</span>
           </div>
           </div>

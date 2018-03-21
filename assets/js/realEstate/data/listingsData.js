@@ -12,14 +12,14 @@ var listingsData = [
     ],
     homeType: 'Row Home',
     image:
-    'http://www.peopleincommon.org/wp-content/uploads/2017/12/Wonderful-Modern-House-Exteriors-69-In-Best-Interior-with-Modern-House-Exteriors.jpg'
+    'https://m5.paperblog.com/i/110/1108814/dope-brand-alert-tailamade-artisan-soaps-L-K6qRbr.jpeg'
   },
 
 
   {
-    address: '911 Sigel Street',
-    city: 'Point Breeze',
-    state: 'PA',
+    address: '964 Jett St',
+    city: 'Atlanta',
+    state: 'GA',
     rooms: 3,
     price: 35000,
     floorSpace: 3000,
@@ -27,9 +27,9 @@ var listingsData = [
       'porch' ,
        'basement'
     ],
-    homeType: 'Brownstone',
+    homeType: 'House',
     image:
-    'https://coremedia.mris.com/image/V3/1/5Sw1xw8l_ArENH79vYBGoMn4BJyd7Da9ufGCDt4KhQq1GSux19KsdT4wCqdcdBCBxLX9AiCPSh0x2x3cGKiYIw.jpg'
+    'https://photos.zillowstatic.com/p_h/ISi3uwtsbjbk100000000000.jpg'
   },
 
 
