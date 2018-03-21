@@ -18,13 +18,13 @@ var listingsData = [
 
   {
     address: '911 Sigel Street',
-    city: 'South Philadelphia',
+    city: 'Point Breeze',
     state: 'PA',
     rooms: 3,
     price: 35000,
     floorSpace: 3000,
     extras: [
-      'porch',
+      'porch' ,
        'basement'
     ],
     homeType: 'Brownstone',
@@ -41,7 +41,7 @@ var listingsData = [
     price: 655000,
     floorSpace: 32000,
     extras: [
-      'elevator',
+      'elevator ',
        'gym'
     ],
     homeType: 'Brownstone',
@@ -66,5 +66,65 @@ var listingsData = [
       'https://ei.marketwatch.com/Multimedia/2016/11/04/Photos/ZH/MW-EZ493_miami__20161104120841_ZH.jpg?uuid=f41fe4c4-a2a8-11e6-ac14-001cc448aede'
     },
 
+    {
+      address: '544 Collins ave',
+      city: 'Miami',
+      state: 'FL',
+      rooms: 2,
+      price: 895000,
+      floorSpace: 9000,
+      extras: [
+        'elevator',
+         'gym'
+      ],
+      homeType: 'Condo',
+      image:
+      'https://ei.marketwatch.com/Multimedia/2016/11/04/Photos/ZH/MW-EZ493_miami__20161104120841_ZH.jpg?uuid=f41fe4c4-a2a8-11e6-ac14-001cc448aede'
+    },
+    {
+      address: '544 Collins ave',
+      city: 'Miami',
+      state: 'FL',
+      rooms: 2,
+      price: 895000,
+      floorSpace: 9000,
+      extras: [
+        'elevator',
+         'gym'
+      ],
+      homeType: 'Condo',
+      image:
+      'https://ei.marketwatch.com/Multimedia/2016/11/04/Photos/ZH/MW-EZ493_miami__20161104120841_ZH.jpg?uuid=f41fe4c4-a2a8-11e6-ac14-001cc448aede'
+    },
+    {
+      address: '544 Collins ave',
+      city: 'Miami',
+      state: 'FL',
+      rooms: 2,
+      price: 895000,
+      floorSpace: 9000,
+      extras: [
+        'elevator',
+         'gym'
+      ],
+      homeType: 'Condo',
+      image:
+      'https://ei.marketwatch.com/Multimedia/2016/11/04/Photos/ZH/MW-EZ493_miami__20161104120841_ZH.jpg?uuid=f41fe4c4-a2a8-11e6-ac14-001cc448aede'
+    },
+    {
+      address: '544 Collins ave',
+      city: 'Miami',
+      state: 'FL',
+      rooms: 2,
+      price: 895000,
+      floorSpace: 9000,
+      extras: [
+        'elevator',
+         'gym'
+      ],
+      homeType: 'Condo',
+      image:
+      'https://ei.marketwatch.com/Multimedia/2016/11/04/Photos/ZH/MW-EZ493_miami__20161104120841_ZH.jpg?uuid=f41fe4c4-a2a8-11e6-ac14-001cc448aede'
+    },
 ]
 export default listingsData;
