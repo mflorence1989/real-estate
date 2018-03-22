@@ -27,7 +27,7 @@ var listingsData = [{
   price: 35000,
   floorSpace: 3000,
   extras: ['porch', 'basement'],
-  homeType: 'House',
+  homeType: 'Ranch',
   image: 'https://photos.zillowstatic.com/p_h/ISi3uwtsbjbk100000000000.jpg'
 }, {
   address: '330 Walnut Street',
@@ -37,7 +37,7 @@ var listingsData = [{
   price: 655000,
   floorSpace: 32000,
   extras: ['elevator ', 'gym'],
-  homeType: 'Brownstone',
+  homeType: 'Condo',
   image: 'https://tallbox.org/wp-content/uploads/2016/06/Renovirana-kashta-v-Bruklin-18.jpg'
 }, {
   address: '544 Collins ave',
@@ -147,10 +147,13 @@ var App = function (_Component) {
     _this.state = {
       name: 'Mario',
       listingsData: _listingsData2.default,
+      city: 'All',
+      homeType: 'All',
+      bedrooms: 0,
       min_price: 0,
-      max_price: 100000,
+      max_price: 10000000,
       min_floor_space: 500,
-      max_floor_space: 9000,
+      max_floor_space: 100000,
       gym: false,
       finished_basement: false,
       swimmming_pool: false,
@@ -181,8 +184,21 @@ var App = function (_Component) {
       var _this3 = this;
 
       var newData = this.state.listingsData.filter(function (item) {
-        return item.price >= _this3.state.min_price && item.price <= _this3.state.max_price && item.floorSpace >= _this3.state.min_floor_space && item.floorSpace <= _this3.state.max_floor_space;
+        return item.price >= _this3.state.min_price && item.price <= _this3.state.max_price && item.floorSpace >= _this3.state.min_floor_space && item.floorSpace <= _this3.state.max_floor_space && item.rooms >= _this3.state.bedrooms;
       });
+
+      if (this.state.city != "All") {
+        newData = newData.filter(function (item) {
+          return item.city == _this3.state.city;
+        });
+      }
+
+      if (this.state.homeType != "All") {
+        newData = newData.filter(function (item) {
+          return item.homeType == _this3.state.homeType;
+        });
+      }
+
       this.setState({
         filteredData: newData
       });
@@ -267,8 +283,18 @@ var Filter = function (_Component) {
             'Filter'
           ),
           _react2.default.createElement(
+            'label',
+            { 'for': 'city' },
+            'City'
+          ),
+          _react2.default.createElement(
             'select',
-            { name: 'neighborhood', className: 'filters neighborhood', onChange: this.props.change },
+            { name: 'city', className: 'filters city', onChange: this.props.change },
+            _react2.default.createElement(
+              'option',
+              { value: 'All' },
+              'All'
+            ),
             _react2.default.createElement(
               'option',
               { value: 'East New York' },
@@ -281,18 +307,28 @@ var Filter = function (_Component) {
             ),
             _react2.default.createElement(
               'option',
-              { value: 'Los Angeles ' },
+              { value: 'Los Angeles' },
               'Los Angeles '
             ),
             _react2.default.createElement(
               'option',
-              { value: 'Atlanta ' },
+              { value: 'Atlanta' },
               ' Atlanta  '
             )
           ),
           _react2.default.createElement(
+            'label',
+            { 'for': 'city' },
+            'Home Type'
+          ),
+          _react2.default.createElement(
             'select',
-            { name: 'housetype', className: 'filters housetype', onChange: this.props.change },
+            { name: 'homeType', className: 'filters homeType', onChange: this.props.change },
+            _react2.default.createElement(
+              'option',
+              { value: 'All' },
+              'All Homes'
+            ),
             _react2.default.createElement(
               'option',
               { value: 'Ranch' },
@@ -315,22 +351,32 @@ var Filter = function (_Component) {
             )
           ),
           _react2.default.createElement(
+            'label',
+            { 'for': 'city' },
+            'Bedrooms'
+          ),
+          _react2.default.createElement(
             'select',
             { name: 'bedrooms', className: 'filters bedrooms', onChange: this.props.change },
             _react2.default.createElement(
               'option',
-              { value: '3' },
-              '3 BR '
-            ),
-            _react2.default.createElement(
-              'option',
-              { value: '2' },
-              '2 BR '
+              { value: '0' },
+              ' 0+ BR '
             ),
             _react2.default.createElement(
               'option',
               { value: '1' },
-              '1 BR '
+              ' 1+ BR '
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: '2' },
+              ' 2+ BR '
+            ),
+            _react2.default.createElement(
+              'option',
+              { value: '3' },
+              ' 3+ BR '
             )
           ),
           _react2.default.createElement(

@@ -3,7 +3,7 @@ var listingsData = [
     address: '915 E Godfrey ave 1f',
     city: 'Summerdale',
     state: 'PA',
-    rooms: 3,
+    rooms:3,
     price: 65000,
     floorSpace: 2000,
     extras: [
@@ -27,7 +27,7 @@ var listingsData = [
       'porch' ,
        'basement'
     ],
-    homeType: 'House',
+    homeType: 'Ranch',
     image:
     'https://photos.zillowstatic.com/p_h/ISi3uwtsbjbk100000000000.jpg'
   },
@@ -44,7 +44,7 @@ var listingsData = [
       'elevator ',
        'gym'
     ],
-    homeType: 'Brownstone',
+    homeType: 'Condo',
     image:
     'https://tallbox.org/wp-content/uploads/2016/06/Renovirana-kashta-v-Bruklin-18.jpg'
   },
