@@ -27,7 +27,7 @@ var listingsData = [{
   price: 35000,
   floorSpace: 3000,
   extras: ['porch', 'basement'],
-  homeType: 'House',
+  homeType: 'Ranch',
   image: 'https://photos.zillowstatic.com/p_h/ISi3uwtsbjbk100000000000.jpg'
 }, {
   address: '330 Walnut Street',
@@ -37,7 +37,7 @@ var listingsData = [{
   price: 655000,
   floorSpace: 32000,
   extras: ['elevator ', 'gym'],
-  homeType: 'Brownstone',
+  homeType: 'Condo',
   image: 'https://tallbox.org/wp-content/uploads/2016/06/Renovirana-kashta-v-Bruklin-18.jpg'
 }, {
   address: '544 Collins ave',
@@ -128,6 +128,8 @@ var _listingsData2 = _interopRequireDefault(_listingsData);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -147,20 +149,38 @@ var App = function (_Component) {
     _this.state = {
       name: 'Mario',
       listingsData: _listingsData2.default,
+      city: 'All',
+      homeType: 'All',
+      bedrooms: 0,
       min_price: 0,
-      max_price: 100000,
+      max_price: 10000000,
       min_floor_space: 500,
-      max_floor_space: 9000,
+      max_floor_space: 100000,
       gym: false,
       finished_basement: false,
       swimmming_pool: false,
-      elevator: false
+      elevator: false,
+      filteredData: _listingsData2.default,
+      populateFormsData: '',
+      sortby: 'price-dsc'
     };
     _this.change = _this.change.bind(_this);
+    _this.filteredData = _this.filteredData.bind(_this);
+    _this.populateForms = _this.populateForms.bind(_this);
     return _this;
   }
 
   _createClass(App, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      var listingsData = this.state.listingsData.sort(function (a, b) {
+        return a.price - b.price;
+      });
+      this.setState({
+        listingsData: listingsData
+      });
+    }
+  }, {
     key: 'change',
     value: function change(event) {
       var _this2 = this;
@@ -170,6 +190,82 @@ var App = function (_Component) {
 
       this.setState(_defineProperty({}, name, value), function () {
         console.log(_this2.state);
+        _this2.filteredData();
+      });
+    }
+  }, {
+    key: 'filteredData',
+    value: function filteredData() {
+      var _this3 = this;
+
+      var newData = this.state.listingsData.filter(function (item) {
+        return item.price >= _this3.state.min_price && item.price <= _this3.state.max_price && item.floorSpace >= _this3.state.min_floor_space && item.floorSpace <= _this3.state.max_floor_space && item.rooms >= _this3.state.bedrooms;
+      });
+
+      if (this.state.city != "All") {
+        newData = newData.filter(function (item) {
+          return item.city == _this3.state.city;
+        });
+      }
+
+      if (this.state.sortby == 'price-dsc') {
+        newData = newData.sort(function (a, b) {
+          return a.price - b.price;
+        });
+      }
+
+      if (this.state.sortby == 'price-asc') {
+        newData = newData.sort(function (a, b) {
+          return b.price - a.price;
+        });
+      }
+
+      if (this.state.homeType != "All") {
+        newData = newData.filter(function (item) {
+          return item.homeType == _this3.state.homeType;
+        });
+      }
+
+      this.setState({
+        filteredData: newData
+      });
+    }
+  }, {
+    key: 'populateForms',
+    value: function populateForms() {
+      var _this4 = this;
+
+      //city
+      var cities = this.state.listingsData.map(function (item) {
+        return item.city;
+      });
+      cities = new Set(cities);
+      cities = [].concat(_toConsumableArray(cities));
+
+      cities = cities.sort();
+      //homeType
+      var homeTypes = this.state.listingsData.map(function (item) {
+        return item.homeType;
+      });
+      homeTypes = new Set(homeTypes);
+      homeTypes = [].concat(_toConsumableArray(homeTypes));
+      homeTypes = homeTypes.sort();
+      //bedrooms
+      var bedrooms = this.state.listingsData.map(function (item) {
+        return item.rooms;
+      });
+      bedrooms = new Set(bedrooms);
+      bedrooms = [].concat(_toConsumableArray(bedrooms));
+      bedrooms = bedrooms.sort();
+
+      this.setState({
+        populateFormsData: {
+          homeTypes: homeTypes,
+          bedrooms: bedrooms,
+          cities: cities
+        }
+      }, function () {
+        console.log(_this4.state);
       });
     }
   }, {
@@ -183,8 +279,10 @@ var App = function (_Component) {
         _react2.default.createElement(
           'section',
           { id: 'content-area' },
-          _react2.default.createElement(_Filter2.default, { change: this.change, globalState: this.state }),
-          _react2.default.createElement(_Listings2.default, { listingsData: this.state.listingsData })
+          _react2.default.createElement(_Filter2.default, { change: this.change, globalState: this.state,
+            populateAction: this.populateForms }),
+          _react2.default.createElement(_Listings2.default, { listingsData: this.state.filteredData,
+            change: this.change, globalState: this.state })
         )
       );
     }
@@ -234,10 +332,67 @@ var Filter = function (_Component) {
     _this.state = {
       name: 'Mario'
     };
+    _this.cities = _this.cities.bind(_this);
+    _this.homeTypes = _this.homeTypes.bind(_this);
+    _this.bedrooms = _this.bedrooms.bind(_this);
     return _this;
   }
 
   _createClass(Filter, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      this.props.populateAction();
+    }
+  }, {
+    key: 'cities',
+    value: function cities() {
+      if (this.props.globalState.populateFormsData.cities != undefined) {
+        var cities = this.props.globalState.populateFormsData.cities;
+
+        console.log(cities);
+        return cities.map(function (item) {
+          return _react2.default.createElement(
+            'option',
+            { key: item, value: item },
+            item
+          );
+        });
+      }
+    }
+  }, {
+    key: 'homeTypes',
+    value: function homeTypes() {
+      if (this.props.globalState.populateFormsData.homeTypes != undefined) {
+        var homeTypes = this.props.globalState.populateFormsData.homeTypes;
+
+        console.log(homeTypes);
+        return homeTypes.map(function (item) {
+          return _react2.default.createElement(
+            'option',
+            { key: item, value: item },
+            item
+          );
+        });
+      }
+    }
+  }, {
+    key: 'bedrooms',
+    value: function bedrooms() {
+      if (this.props.globalState.populateFormsData.bedrooms != undefined) {
+        var bedrooms = this.props.globalState.populateFormsData.bedrooms;
+
+        console.log(bedrooms);
+        return bedrooms.map(function (item) {
+          return _react2.default.createElement(
+            'option',
+            { key: item, value: item },
+            item,
+            '+ BR'
+          );
+        });
+      }
+    }
+  }, {
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -252,71 +407,47 @@ var Filter = function (_Component) {
             'Filter'
           ),
           _react2.default.createElement(
-            'select',
-            { name: 'neighborhood', className: 'filters neighborhood', onChange: this.props.change },
-            _react2.default.createElement(
-              'option',
-              { value: 'East New York' },
-              'East New York '
-            ),
-            _react2.default.createElement(
-              'option',
-              { value: 'Miami' },
-              'Miami'
-            ),
-            _react2.default.createElement(
-              'option',
-              { value: 'Los Angeles ' },
-              'Los Angeles '
-            ),
-            _react2.default.createElement(
-              'option',
-              { value: 'Atlanta ' },
-              ' Atlanta  '
-            )
+            'label',
+            { htmlFor: 'city' },
+            'City'
           ),
           _react2.default.createElement(
             'select',
-            { name: 'housetype', className: 'filters housetype', onChange: this.props.change },
+            { name: 'city', className: 'filters city',
+              onChange: this.props.change },
             _react2.default.createElement(
               'option',
-              { value: 'Ranch' },
-              'Ranch'
+              { value: 'All' },
+              'All'
             ),
-            _react2.default.createElement(
-              'option',
-              { value: 'Colonial' },
-              'Colonial'
-            ),
-            _react2.default.createElement(
-              'option',
-              { value: 'TownHouse' },
-              'TownHouse'
-            ),
-            _react2.default.createElement(
-              'option',
-              { value: 'Condo' },
-              'Condo'
-            )
+            this.cities()
+          ),
+          _react2.default.createElement(
+            'label',
+            { htmlFor: 'city' },
+            'Home Type'
           ),
           _react2.default.createElement(
             'select',
-            { name: 'bedrooms', className: 'filters bedrooms', onChange: this.props.change },
+            { name: 'homeType', className: 'filters homeType',
+              onChange: this.props.change },
             _react2.default.createElement(
               'option',
-              { value: '3' },
-              '3 BR '
+              { value: 'All' },
+              'All'
             ),
-            _react2.default.createElement(
-              'option',
-              { value: '2' },
-              '2 BR '
-            ),
-            _react2.default.createElement(
-              'option',
-              { value: '1' },
-              '1 BR '
-            )
+            this.homeTypes()
+          ),
+          _react2.default.createElement(
+            'label',
+            { htmlFor: 'city' },
+            'Bedrooms'
+          ),
+          _react2.default.createElement(
+            'select',
+            { name: 'bedrooms', className: 'filters bedrooms',
+              onChange: this.props.change },
+            this.bedrooms()
           ),
           _react2.default.createElement(
             'div',
@@ -537,6 +668,9 @@ var Listings = function (_Component) {
     value: function loopListings() {
       var listingsData = this.props.listingsData;
 
+      if (listingsData == undefined || listingsData.length == 0) {
+        return "Sorry your filter did not match any listings";
+      }
       return listingsData.map(function (listing, index) {
         return _react2.default.createElement(
           'div',
@@ -661,16 +795,16 @@ var Listings = function (_Component) {
             { className: 'sort-options' },
             _react2.default.createElement(
               'select',
-              { name: 'sortby', className: 'sortby' },
+              { name: 'sortby', className: 'sortby', onChange: this.props.change },
               _react2.default.createElement(
                 'option',
-                { value: 'price-asc' },
-                'Highest price'
+                { value: 'price-dsc' },
+                'Lowest price'
               ),
               _react2.default.createElement(
                 'option',
                 { value: 'price-asc' },
-                'Lowest price'
+                'Highest price'
               )
             ),
             _react2.default.createElement(
