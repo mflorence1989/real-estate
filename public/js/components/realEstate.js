@@ -279,9 +279,10 @@ var App = function (_Component) {
         _react2.default.createElement(
           'section',
           { id: 'content-area' },
-          _react2.default.createElement(_Filter2.default, { change: this.change, globalState: this.state, populateAction: this.populateForms }),
+          _react2.default.createElement(_Filter2.default, { change: this.change, globalState: this.state,
+            populateAction: this.populateForms }),
           _react2.default.createElement(_Listings2.default, { listingsData: this.state.filteredData,
-            change: this.change })
+            change: this.change, globalState: this.state })
         )
       );
     }

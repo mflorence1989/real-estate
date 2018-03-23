@@ -130,9 +130,10 @@ class App extends Component {
     return (<div>
       <Header />
       <section id="content-area">
-      <Filter change={this.change} globalState={this.state} populateAction={this.populateForms}/>
+      <Filter change={this.change} globalState={this.state}
+      populateAction={this.populateForms}/>
       <Listings listingsData={this.state.filteredData}
-      change={this.change}/>
+      change={this.change} globalState={this.state}/>
       </section>
       </div>)
   }
