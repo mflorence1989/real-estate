@@ -12,10 +12,10 @@ class App extends Component {
       listingsData,
       city: 'All',
       homeType: 'All',
-      bedrooms: 0,
+      bedrooms: '0',
       min_price: 0,
       max_price: 10000000,
-      min_floor_space: 500,
+      min_floor_space: 0,
       max_floor_space: 100000,
       gym: false,
       finished_basement: false,
@@ -24,7 +24,8 @@ class App extends Component {
       filteredData: listingsData,
       populateFormsData: '',
       sortby:'price-dsc',
-      view: 'long'
+      view: 'long',
+      search: ''
     }
     this.change = this.change.bind(this)
     this.filteredData = this.filteredData.bind(this)
@@ -71,6 +72,11 @@ class App extends Component {
         return item.city == this.state.city
       })
     }
+    if(this.state.homeType != "All"){
+      newData = newData.filter((item) => {
+        return item.homeType == this.state.city
+      })
+    }
 
     if(this.state.sortby == 'price-dsc'){
       newData = newData.sort((a,b) => {
@@ -89,6 +95,17 @@ class App extends Component {
         return item.homeType == this.state.homeType
       })
     }
+    if(this.state.search != ''){
+    newData = newData.filter((item) => {
+      var city = item.city.toLowerCase()
+      var searchText = this.state.search.toLowerCase()
+      var n = city.match(searchText)
+
+      if(n != null) {
+        return true
+      }
+    })
+  }
 
 
     this.setState({

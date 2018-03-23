@@ -1,7 +1,7 @@
 var listingsData = [
   {
     address: '915 E Godfrey ave 1f',
-    city: 'Summerdale',
+    city: 'summerdale',
     state: 'PA',
     rooms:3,
     price: 65000,
@@ -98,11 +98,12 @@ var listingsData = [
     },
     {
       address: '544 Collins ave',
-      city: 'Miami',
+      city: 'miami',
       state: 'FL',
-      rooms: 2,
-      price: 895000,
-      floorSpace: 9000,
+      rooms: 1,
+      price: 10000000,
+      floorSpace: 100000,
+
       extras: [
         'elevator',
          'gym'

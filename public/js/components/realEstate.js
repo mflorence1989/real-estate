@@ -11,7 +11,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 var listingsData = [{
   address: '915 E Godfrey ave 1f',
-  city: 'Summerdale',
+  city: 'summerdale',
   state: 'PA',
   rooms: 3,
   price: 65000,
@@ -71,11 +71,12 @@ var listingsData = [{
   image: 'https://ei.marketwatch.com/Multimedia/2016/11/04/Photos/ZH/MW-EZ493_miami__20161104120841_ZH.jpg?uuid=f41fe4c4-a2a8-11e6-ac14-001cc448aede'
 }, {
   address: '544 Collins ave',
-  city: 'Miami',
+  city: 'miami',
   state: 'FL',
-  rooms: 2,
-  price: 895000,
-  floorSpace: 9000,
+  rooms: 1,
+  price: 10000000,
+  floorSpace: 100000,
+
   extras: ['elevator', 'gym'],
   homeType: 'Condo',
   image: 'https://ei.marketwatch.com/Multimedia/2016/11/04/Photos/ZH/MW-EZ493_miami__20161104120841_ZH.jpg?uuid=f41fe4c4-a2a8-11e6-ac14-001cc448aede'
@@ -151,10 +152,10 @@ var App = function (_Component) {
       listingsData: _listingsData2.default,
       city: 'All',
       homeType: 'All',
-      bedrooms: 0,
+      bedrooms: '0',
       min_price: 0,
       max_price: 10000000,
-      min_floor_space: 500,
+      min_floor_space: 0,
       max_floor_space: 100000,
       gym: false,
       finished_basement: false,
@@ -163,7 +164,8 @@ var App = function (_Component) {
       filteredData: _listingsData2.default,
       populateFormsData: '',
       sortby: 'price-dsc',
-      view: 'long'
+      view: 'long',
+      search: ''
     };
     _this.change = _this.change.bind(_this);
     _this.filteredData = _this.filteredData.bind(_this);
@@ -216,6 +218,11 @@ var App = function (_Component) {
           return item.city == _this3.state.city;
         });
       }
+      if (this.state.homeType != "All") {
+        newData = newData.filter(function (item) {
+          return item.homeType == _this3.state.city;
+        });
+      }
 
       if (this.state.sortby == 'price-dsc') {
         newData = newData.sort(function (a, b) {
@@ -232,6 +239,17 @@ var App = function (_Component) {
       if (this.state.homeType != "All") {
         newData = newData.filter(function (item) {
           return item.homeType == _this3.state.homeType;
+        });
+      }
+      if (this.state.search != '') {
+        newData = newData.filter(function (item) {
+          var city = item.city.toLowerCase();
+          var searchText = _this3.state.search.toLowerCase();
+          var n = city.match(searchText);
+
+          if (n != null) {
+            return true;
+          }
         });
       }
 
@@ -895,7 +913,7 @@ var Listings = function (_Component) {
         _react2.default.createElement(
           'section',
           { className: 'search-area' },
-          _react2.default.createElement('input', { type: 'text', name: 'search' })
+          _react2.default.createElement('input', { type: 'text', name: 'search', onChange: this.props.change })
         ),
         _react2.default.createElement(
           'section',
