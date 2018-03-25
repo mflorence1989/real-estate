@@ -596,10 +596,6 @@ var Header = function (_Component) {
 
     var _this = _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this));
 
-    _this.clickedBtn = function () {
-      console.log('swag');
-    };
-
     _this.state = {
       name: 'Mario'
     };
@@ -615,7 +611,7 @@ var Header = function (_Component) {
         _react2.default.createElement(
           'div',
           { className: 'logo' },
-          ' Logo '
+          ' Real Estate '
         ),
         _react2.default.createElement(
           'nav',
@@ -623,17 +619,17 @@ var Header = function (_Component) {
           _react2.default.createElement(
             'a',
             { href: '#' },
-            ' create ads'
+            'Realtors'
           ),
           _react2.default.createElement(
             'a',
             { href: '#' },
-            ' about us'
+            'About us'
           ),
           _react2.default.createElement(
             'a',
             { href: '#' },
-            ' log in'
+            'Log in'
           ),
           _react2.default.createElement(
             'a',

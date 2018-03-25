@@ -2,8 +2,8 @@
 #content-area{
   overflow: auto;
   width: 100%;
-
   min-height: 100vh;
+
 }
 #filter{
   background: $grey;
@@ -20,6 +20,7 @@
     text-transform: uppercase;
     font-weight: 700px;
     font-size: 0.9rem;
+
   }
 
   select{
@@ -264,12 +265,13 @@
 }
 .view-btn{
   background: black;
-  padding: 8px;
+  padding: 5px;
   font-size: .9rem;
-  border-radius: 5px;
+  border-radius: 15px;
   text-align: center;
-  max-width: 150px;
+  max-width: 100px;
   transition: background .3s ease-in-out;
+
   &:hover{
     cursor: pointer;
     background: $pink;
@@ -279,6 +281,7 @@
 #pagination{
 
   .pages{
+    margin-top: 20px;
     text-align: center;
     background: white;
     display: inline-block;
