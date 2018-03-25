@@ -108,7 +108,7 @@ export default class Listings extends Component {
     </section>
 
     <section className="sortby-area">
-    <div className="results">390 results found</div>
+    <div className="results">{this.props.globalState.filteredData.length} results found</div>
     <div className="sort-options">
     <select name="sortby" className="sortby" onChange={this.props.change}>
     <option value="price-dsc">Lowest price</option>
@@ -124,10 +124,13 @@ export default class Listings extends Component {
     </section>
 
     <section className="listings-results">
+    <div className="row">
     {this.loopListings()}
+      </div>
     </section>
 
     <section id="pagination">
+    <div className="row">
     <ul className="pages">
     <li>Prev</li>
     <li className="active">1</li>
@@ -136,8 +139,8 @@ export default class Listings extends Component {
     <li>4</li>
     <li>5</li>
     <li>Next</li>
-
     </ul>
+    </div>
     </section>
 
 

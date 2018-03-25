@@ -917,7 +917,8 @@ var Listings = function (_Component) {
           _react2.default.createElement(
             'div',
             { className: 'results' },
-            '390 results found'
+            this.props.globalState.filteredData.length,
+            ' results found'
           ),
           _react2.default.createElement(
             'div',
@@ -949,48 +950,56 @@ var Listings = function (_Component) {
         _react2.default.createElement(
           'section',
           { className: 'listings-results' },
-          this.loopListings()
+          _react2.default.createElement(
+            'div',
+            { className: 'row' },
+            this.loopListings()
+          )
         ),
         _react2.default.createElement(
           'section',
           { id: 'pagination' },
           _react2.default.createElement(
-            'ul',
-            { className: 'pages' },
+            'div',
+            { className: 'row' },
             _react2.default.createElement(
-              'li',
-              null,
-              'Prev'
-            ),
-            _react2.default.createElement(
-              'li',
-              { className: 'active' },
-              '1'
-            ),
-            _react2.default.createElement(
-              'li',
-              null,
-              '2'
-            ),
-            _react2.default.createElement(
-              'li',
-              null,
-              '3'
-            ),
-            _react2.default.createElement(
-              'li',
-              null,
-              '4'
-            ),
-            _react2.default.createElement(
-              'li',
-              null,
-              '5'
-            ),
-            _react2.default.createElement(
-              'li',
-              null,
-              'Next'
+              'ul',
+              { className: 'pages' },
+              _react2.default.createElement(
+                'li',
+                null,
+                'Prev'
+              ),
+              _react2.default.createElement(
+                'li',
+                { className: 'active' },
+                '1'
+              ),
+              _react2.default.createElement(
+                'li',
+                null,
+                '2'
+              ),
+              _react2.default.createElement(
+                'li',
+                null,
+                '3'
+              ),
+              _react2.default.createElement(
+                'li',
+                null,
+                '4'
+              ),
+              _react2.default.createElement(
+                'li',
+                null,
+                '5'
+              ),
+              _react2.default.createElement(
+                'li',
+                null,
+                'Next'
+              )
             )
           )
         )
